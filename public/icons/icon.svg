@@ -1,1 +1,11 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><rect width="512" height="512" rx="112" fill="#1f6feb"/><circle cx="256" cy="256" r="143" fill="#fff"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><defs><linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#059669"/><stop offset="100%" stop-color="#047857"/></linearGradient></defs>
+  <rect width="512" height="512" rx="112" fill="url(#bg)"/>
+  <g transform="translate(256 256) scale(1) translate(-256 -256)">
+  <g transform="translate(256 262) rotate(-40) translate(-256 -256)">
+    <path d="M186 128 L326 128 L292 322 L220 322 Z" fill="#ffffff"/>
+    <path d="M221 128 L241 322 M256 128 L256 322 M291 128 L271 322" stroke="#10b981" stroke-width="7" fill="none" stroke-linecap="round"/>
+    <path d="M186 128 L326 128" stroke="#a7f3d0" stroke-width="12" stroke-linecap="round"/>
+    <circle cx="256" cy="362" r="46" fill="#fef3c7"/>
+    <path d="M222 340 Q256 322 290 340" stroke="#f59e0b" stroke-width="7" fill="none" stroke-linecap="round"/>
+  </g></g>
+</svg>

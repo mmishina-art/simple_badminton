@@ -1,6 +1,5 @@
 {
-  "name": "pwa-app",
-  "pwaTemplate": true,
+  "name": "simple-badminton",
   "version": "0.1.0",
   "private": true,
   "type": "module",
@@ -28,5 +27,9 @@
     "vite-plugin-pwa": "^2.0.0",
     "vitest": "^5.0.3",
     "workbox-window": "^7.4.1"
-  }
+  },
+  "dependencies": {
+    "preact": "^11.0.1"
+  },
+  "description": "バドミントン ダブルス乱数表(組み合わせ・MVP・得点板)の PWA"
 }

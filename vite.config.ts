@@ -6,13 +6,16 @@ import { VitePWA } from 'vite-plugin-pwa';
 const { version, name: appId } = JSON.parse(readFileSync(new URL('./package.json', import.meta.url), 'utf8')) as { version: string; name: string };
 
 // アプリ名・色はここと index.html の2か所だけ。新しいアプリを作るときに書き換える。
-const APP_NAME = 'PWAアプリ';
-const THEME_COLOR = '#1f6feb';
-const BACKGROUND_COLOR = '#f6f8fa';
+const APP_NAME = 'バドミントン ダブルス乱数表';
+const SHORT_NAME = 'バド乱数表';
+const THEME_COLOR = '#0f172a';
+const BACKGROUND_COLOR = '#0f172a';
 
 export default defineConfig({
   // GitHub Pages のサブパス配信でも動くよう、相対パスにする
   base: './',
+  // JSX は Preact で処理する（Vite 8 は oxc で変換する）
+  oxc: { jsx: { runtime: 'automatic', importSource: 'preact' } },
   // 画面に表示するバージョン（package.json の version）
   define: {
     __APP_VERSION__: JSON.stringify(version),
@@ -32,10 +35,11 @@ export default defineConfig({
       includeAssets: ['icons/icon.svg', 'icons/apple-touch-icon.png'],
       manifest: {
         name: APP_NAME,
-        short_name: APP_NAME,
-        description: 'PWAアプリのテンプレート',
+        short_name: SHORT_NAME,
+        description: '公平な組み合わせ・休憩管理・ミックス優先・腕前の均等化・MVP表彰・得点板を備えた、バドミントンダブルスの乱数表アプリ',
         lang: 'ja',
         display: 'standalone',
+        orientation: 'any', // 得点板を横向きの大画面で使うため
         start_url: './',
         scope: './',
         theme_color: THEME_COLOR,
@@ -53,5 +57,5 @@ export default defineConfig({
       },
     }),
   ],
-  test: { environment: 'node', include: ['tests/**/*.test.ts'] },
+  test: { environment: 'node', include: ['tests/**/*.test.{ts,tsx}'] },
 });
