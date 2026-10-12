@@ -4,6 +4,7 @@ import { setupInstallGuide } from './install';
 import { setupUpdateBanner } from './pwa';
 import { migrateStorage, requestPersist } from './storage';
 import { App } from './ui/App';
+import { HeaderBadge } from './ui/HeaderBadge';
 
 const $ = <T extends HTMLElement>(id: string): T => {
   const el = document.getElementById(id);
@@ -14,6 +15,7 @@ const $ = <T extends HTMLElement>(id: string): T => {
 migrateStorage();
 $('version').textContent = __APP_VERSION__;
 render(<App />, $('root'));
+render(<HeaderBadge />, $('header-badge'));
 requestPersist();
 setupUpdateBanner($('update-banner'), $('update-button'));
 setupInstallGuide($<HTMLButtonElement>('install-open'), $<HTMLDialogElement>('install-dialog'), $<HTMLButtonElement>('install-now'));
