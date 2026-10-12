@@ -1,8 +1,11 @@
 import { tabStore } from '../state/ui';
 import { useStore } from '../state/createStore';
 import { MatchesTab } from './MatchesTab';
+import { HelpTab } from './HelpTab';
 import { Nav } from './Nav';
 import { PlayersTab } from './PlayersTab';
+import { ScoreboardTab } from './ScoreboardTab';
+import { SettingsTab } from './SettingsTab';
 import { StatsTab } from './StatsTab';
 import { Toasts } from './Toasts';
 
@@ -16,11 +19,9 @@ export function App() {
         {tab === 'matches' && <MatchesTab />}
         {tab === 'players' && <PlayersTab />}
         {tab === 'stats' && <StatsTab />}
-        {(tab === 'scoreboard' || tab === 'settings' || tab === 'help') && (
-          <section class="panel" aria-live="polite">
-            <p class="muted">準備中です(タブ: {tab})</p>
-          </section>
-        )}
+        {tab === 'scoreboard' && <ScoreboardTab />}
+        {tab === 'settings' && <SettingsTab />}
+        {tab === 'help' && <HelpTab />}
       </main>
       <Nav />
       <Toasts />
