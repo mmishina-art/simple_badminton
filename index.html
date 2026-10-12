@@ -4,51 +4,47 @@
     <meta charset="UTF-8" />
     <!-- ピンチ拡大は許可する（user-scalable=no / maximum-scale は入れない） -->
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <meta name="theme-color" content="#1f6feb" />
+    <meta name="theme-color" content="#0f172a" />
+    <!-- 配色は「暗い固定」（体育館の明るい照明の下でも、大きな文字が見やすい） -->
+    <meta name="color-scheme" content="dark" />
     <meta name="app-id" content="__APP_ID__" />
-    <meta name="description" content="PWAアプリのテンプレート" />
+    <meta name="description" content="公平な組み合わせ・休憩管理・ミックス優先・腕前の均等化・MVP表彰・得点板を備えた、バドミントンダブルスの乱数表アプリ" />
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <!-- iPhone のホーム画面アプリ: ステータスバーは不透明にする（暗い固定・端末設定に従う: black / 明るい固定: default）。
          black-translucent にすると、ステータスバーの下に入った内容を iOS がぼかして、画面の上端の文字が読みにくくなる -->
     <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-    <meta name="apple-mobile-web-app-title" content="PWAアプリ" />
+    <meta name="apple-mobile-web-app-title" content="バド乱数表" />
     <link rel="icon" type="image/svg+xml" href="icons/icon.svg" />
     <link rel="apple-touch-icon" href="icons/apple-touch-icon.png" />
-    <title>PWAアプリ</title>
+    <title>バドミントン ダブルス乱数表</title>
   </head>
   <body>
-    <main id="app">
-      <header class="header">
-        <h1>PWAアプリ</h1>
-        <button id="sound-button" type="button" class="icon-button" aria-label="音" aria-pressed="true">🔊</button>
-      </header>
+    <!-- 上の帯: タイトル・バージョン・インストールの入口は、Preact を通さない静的な HTML（check:dist が確認する）。
+         右上の参加人数のバッジだけ、Preact（#header-badge）で描く -->
+    <header class="app-header">
+      <div class="app-header__inner">
+        <div class="brand">
+          <span class="brand__logo" aria-hidden="true">🏸</span>
+          <div>
+            <h1 class="brand__title">バド乱数表 <span class="brand__ver">v<span id="version"></span></span></h1>
+            <p class="brand__sub">DOUBLE MATCHMAKER</p>
+          </div>
+        </div>
+        <div class="app-header__right">
+          <div id="header-badge"></div>
+          <button id="install-open" type="button" class="link install-open">📲 アプリにする方法</button>
+        </div>
+      </div>
+    </header>
 
-      <!-- サンプル: タップ回数を数える。本番では置き換える -->
-      <section class="card">
-        <p class="count" id="count" aria-live="polite">0</p>
-        <p class="muted">最高記録: <span id="best">0</span></p>
-        <button id="tap-button" type="button" class="primary">タップ</button>
-        <button id="reset-button" type="button">リセット</button>
-      </section>
-
-      <details class="backup">
-        <summary>記録のバックアップ</summary>
-        <p class="muted">記録は、このブラウザの中にだけ保存されています。ファイルに残しておくと、消えたときに戻せます。</p>
-        <button id="backup-export" type="button">ファイルに書き出す</button>
-        <label class="file-button">ファイルから読み込む<input id="backup-import" type="file" accept="application/json,.json" hidden></label>
-        <p id="backup-message" class="muted" role="status"></p>
-      </details>
-
-      <button id="install-open" type="button" class="link">📲 アプリとしてインストールする方法</button>
-
-      <p class="muted version">v<span id="version"></span></p>
-    </main>
+    <!-- 画面本体・下のタブ・通知は、Preact（#root）が描く -->
+    <div id="root"></div>
 
     <!-- インストール方法（最初の画面から開く） -->
     <dialog id="install-dialog" class="install-dialog" aria-labelledby="install-title">
       <h2 id="install-title">ホーム画面に追加して使う</h2>
-      <p class="muted">インストールすると、ホーム画面から開けて、オフラインでも使えます。</p>
+      <p class="muted">インストールすると、ホーム画面から開けて、体育館が圏外でも使えます。</p>
       <button id="install-now" type="button" class="primary" hidden>今すぐインストール</button>
 
       <details data-platform="ios">
@@ -80,19 +76,19 @@
       <button type="button" data-close>とじる</button>
     </dialog>
 
-    <!-- 新しい版があるときに出る。押すと切り替わる -->
+    <!-- 新しい版があるときに出る。押すと切り替わる（遊んでいる最中に勝手に切り替えない） -->
     <div id="update-banner" class="banner" role="status" hidden>
       <span>新しいバージョンがあります</span>
       <button id="update-button" type="button" class="primary">更新</button>
     </div>
 
-    <!-- 起動できなかったときの復旧（main.ts が読み込めなくても動く、別のふつうのスクリプト） -->
+    <!-- 起動できなかったときの復旧（main.tsx が読み込めなくても動く、別のふつうのスクリプト） -->
     <div id="boot-error" class="banner boot-error" hidden>
       <span>うまく読み込めませんでした。<small>記録は消えません</small></span>
       <button id="boot-repair" type="button" class="primary">なおす</button>
     </div>
 
     <script src="boot.js"></script>
-    <script type="module" src="/src/main.ts"></script>
+    <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

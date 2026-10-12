@@ -6,11 +6,11 @@ export default tseslint.config(
   { ignores: ['dist', 'dev-dist', 'node_modules', 'playwright-report', 'test-results'] },
   js.configs.recommended,
   ...tseslint.configs.recommended,
-  { files: ['src/**/*.ts'], languageOptions: { globals: globals.browser } },
+  { files: ['src/**/*.{ts,tsx}'], languageOptions: { globals: globals.browser } },
   {
     // 利用者が入力した文字を innerHTML に入れると、意図しないタグが動く。textContent を使う。
     // HTML の固定の組み立てが必要なときは、その行に eslint-disable を付けて理由を書く。
-    files: ['src/**/*.ts'],
+    files: ['src/**/*.{ts,tsx}'],
     rules: {
       'no-restricted-syntax': [
         'error',
