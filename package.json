@@ -29,7 +29,8 @@
     "workbox-window": "^7.4.1"
   },
   "dependencies": {
-    "preact": "^11.0.1"
+    "preact": "^11.0.1",
+    "qrcode-generator": "^2.0.4"
   },
   "description": "バドミントン ダブルス乱数表(組み合わせ・MVP・得点板)の PWA"
 }

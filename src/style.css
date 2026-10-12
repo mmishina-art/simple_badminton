@@ -720,3 +720,208 @@ button:focus-visible {
     justify-self: start;
   }
 }
+
+/* ---- 得点板 ---- */
+.sb {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.sb__sides {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.sb__side {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 6px;
+  padding: 8px;
+  border: 2px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--card-2);
+}
+
+.sb__side--A {
+  border-color: var(--sky-d);
+}
+
+.sb__side--B {
+  border-color: var(--pink-d);
+}
+
+.sb__side.is-winner {
+  background: var(--emerald-bg);
+  border-color: var(--emerald);
+}
+
+.sb__name {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  font-weight: 700;
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+
+.sb__score {
+  min-height: 120px;
+  font-size: 4.5rem;
+  font-weight: 800;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  background: var(--surface);
+}
+
+.sb__serve.is-on {
+  background: var(--amber-bg);
+  border-color: var(--amber-d);
+  color: var(--amber-2);
+  font-weight: 700;
+}
+
+.banner-state {
+  padding: 8px 12px;
+  border-radius: 12px;
+  text-align: center;
+  font-weight: 800;
+}
+
+.banner-state--mp {
+  background: var(--amber-bg);
+  color: var(--amber-2);
+}
+
+.banner-state--deuce {
+  background: var(--sky-bg);
+  color: var(--sky);
+}
+
+.banner-state--over {
+  background: var(--emerald-bg);
+  color: var(--emerald-3);
+}
+
+.sb-full {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: calc(var(--safe-top) - 12px) 12px calc(env(safe-area-inset-bottom) + 8px);
+  background: var(--bg);
+}
+
+.sb-full .sb {
+  flex: 1;
+  min-height: 0;
+}
+
+.sb-full .sb__sides {
+  flex: 1;
+}
+
+.sb--big .sb__score {
+  flex: 1;
+  font-size: min(34vw, 42vh);
+}
+
+.sb-full__bar {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+/* ---- 設定・ヘルプ ---- */
+.check {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+}
+
+.check input {
+  width: 24px;
+  height: 24px;
+  flex: none;
+  accent-color: var(--emerald);
+}
+
+.qr {
+  width: min(240px, 100%);
+  height: auto;
+  border-radius: 8px;
+}
+
+button.danger {
+  border-color: var(--rose-d);
+  color: var(--rose-2);
+}
+
+.steps {
+  margin: 0;
+  padding-left: 1.4em;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.help-box {
+  padding: 10px 12px;
+  background: var(--card-2);
+  border: 1px solid var(--border-soft);
+  border-radius: 12px;
+}
+
+.help-box ul {
+  margin: 4px 0 0;
+  padding-left: 1.2em;
+}
+
+.faq {
+  padding: 4px 12px;
+  background: var(--card-2);
+  border: 1px solid var(--border-soft);
+  border-radius: 12px;
+}
+
+.faq summary {
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  font-weight: 700;
+  color: var(--emerald-3);
+  cursor: pointer;
+}
+
+.faq p {
+  padding-bottom: 8px;
+}
+
+/* 得点板の操作ボタン: 狭い画面でも折り返さない */
+.row--wrap > button,
+.sb-full__bar > button {
+  padding: 8px 2px;
+  font-size: 0.78rem;
+  white-space: nowrap;
+}
+
+/* 横向きの全画面: 高さが足りなくても、下のボタン列と重ならない */
+.sb-full .sb__sides,
+.sb-full .sb__side {
+  min-height: 0;
+}
+
+.sb-full .sb__side {
+  overflow: hidden;
+}
+
+.sb--big .sb__score {
+  min-height: 0;
+  font-size: min(30vw, 34vh);
+}
