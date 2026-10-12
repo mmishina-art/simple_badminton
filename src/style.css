@@ -353,3 +353,370 @@ button.link {
     transition: none !important;
   }
 }
+
+/* ---- 共通の部品 ---- */
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.stack > .panel + .panel,
+.app-main > .stack > * {
+  margin: 0;
+}
+
+.row {
+  display: flex;
+  gap: 8px;
+}
+
+.row > * {
+  flex: 1;
+}
+
+.row--wrap {
+  flex-wrap: wrap;
+}
+
+.center {
+  text-align: center;
+  align-items: center;
+}
+
+.small {
+  font-size: 0.8rem;
+}
+
+.h2 {
+  font-size: 1.15rem;
+  font-weight: 800;
+}
+
+.h3 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-2);
+}
+
+.warn {
+  color: var(--amber);
+}
+
+.win {
+  color: var(--emerald-2);
+  font-weight: 700;
+}
+
+button.big {
+  min-height: 52px;
+  font-size: 1.05rem;
+  width: 100%;
+}
+
+.input {
+  width: 100%;
+  min-height: 44px;
+  padding: 8px 12px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--surface);
+  color: var(--text);
+  font: inherit;
+  font-size: 16px; /* iPhone で入力時に拡大されないよう 16px 以上 */
+}
+
+.input:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--emerald-2);
+  outline-offset: 2px;
+}
+
+.seg {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+  gap: 6px;
+}
+
+.seg button.is-on {
+  background: var(--emerald-d);
+  border-color: var(--emerald);
+  color: #fff;
+  font-weight: 700;
+}
+
+.badge {
+  display: inline-block;
+  max-width: 100%;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-align: right;
+  background: var(--emerald-bg);
+  color: var(--emerald-3);
+}
+
+.badge--warn {
+  background: var(--amber-bg);
+  color: var(--amber-2);
+}
+
+.toasts {
+  position: fixed;
+  left: 16px;
+  right: 16px;
+  bottom: calc(var(--nav-h) + env(safe-area-inset-bottom) + 72px);
+  z-index: 80;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  pointer-events: none;
+}
+
+.toast {
+  padding: 8px 16px;
+  border-radius: 999px;
+  background: var(--card-3);
+  border: 1px solid var(--border);
+  box-shadow: 0 6px 20px rgb(0 0 0 / 0.5);
+  font-size: 0.85rem;
+}
+
+/* ---- メンバー ---- */
+.list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.player {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 6px;
+  background: var(--card-2);
+  border: 1px solid var(--border-soft);
+  border-radius: 12px;
+}
+
+.player.is-rest .player__name {
+  color: var(--dim);
+  text-decoration: line-through;
+}
+
+.player__name {
+  flex: 1;
+  min-width: 0;
+  overflow-wrap: anywhere;
+  font-weight: 600;
+}
+
+.player__active {
+  padding: 4px 8px;
+  font-size: 0.75rem;
+  background: var(--emerald-bg);
+  border-color: var(--emerald-d);
+  color: var(--emerald-3);
+}
+
+.player.is-rest .player__active {
+  background: var(--card-3);
+  border-color: var(--border);
+  color: var(--muted);
+}
+
+.chip {
+  padding: 4px 8px;
+  font-size: 0.75rem;
+  border-radius: 999px;
+}
+
+.chip--male {
+  background: var(--sky-bg);
+  border-color: var(--sky-d);
+  color: var(--sky);
+}
+
+.chip--female {
+  background: var(--pink-bg);
+  border-color: var(--pink-d);
+  color: var(--pink);
+}
+
+.chip--beginner {
+  color: var(--emerald-3);
+}
+
+.chip--intermediate {
+  color: var(--amber-2);
+}
+
+.chip--advanced {
+  color: var(--rose-2);
+}
+
+.player__del {
+  padding: 4px 8px;
+  color: var(--rose);
+  background: transparent;
+  border-color: transparent;
+}
+
+/* ---- 試合 ---- */
+.court {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 12px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+}
+
+.court__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.court__vs {
+  text-align: center;
+  color: var(--dim);
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+}
+
+.team {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  min-height: 60px;
+  padding: 10px 14px;
+  background: var(--card-2);
+  border: 2px solid var(--border);
+  border-radius: 14px;
+  text-align: left;
+}
+
+.team__names {
+  font-size: 1.05rem;
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+
+.team.is-win {
+  background: var(--emerald-bg);
+  border-color: var(--emerald);
+}
+
+.team.is-lose {
+  opacity: 0.55;
+}
+
+.team__win {
+  flex: none;
+  padding: 2px 10px;
+  border-radius: 999px;
+  background: var(--emerald);
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 800;
+}
+
+.tag {
+  display: inline-block;
+  margin-left: 4px;
+  padding: 1px 8px;
+  border-radius: 999px;
+  font-size: 0.68rem;
+  font-weight: 700;
+}
+
+.tag--mix {
+  background: var(--pink-bg);
+  color: var(--pink);
+}
+
+.tag--even {
+  background: var(--sky-bg);
+  color: var(--sky);
+}
+
+/* ---- 成績 ---- */
+.winner {
+  text-align: center;
+}
+
+.winner--mvp {
+  background: var(--amber-bg);
+  border-color: var(--amber-d);
+}
+
+.winner__title {
+  color: var(--amber-2);
+  font-weight: 800;
+}
+
+.winner__name {
+  font-size: 1.4rem;
+  font-weight: 800;
+}
+
+.winner__reason {
+  margin-top: 4px;
+  color: var(--text-2);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+}
+
+.table th,
+.table td {
+  padding: 6px 4px;
+  text-align: center;
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.table td:nth-child(2),
+.table th:nth-child(2) {
+  text-align: left;
+}
+
+.history {
+  padding-top: 6px;
+  border-top: 1px solid var(--border-soft);
+}
+
+/* 狭い画面では、ヘッダーを低くする(サブタイトルを隠し、インストール案内を同じ行に) */
+@media (max-width: 440px) {
+  .brand__sub {
+    display: none;
+  }
+
+  .app-header__inner {
+    grid-template-columns: auto 1fr;
+  }
+
+  .install-open {
+    grid-column: 1 / -1;
+    justify-self: end;
+    min-height: 28px;
+    padding: 0 8px;
+  }
+
+  #header-badge {
+    grid-column: 1 / -1;
+    justify-self: start;
+  }
+}
